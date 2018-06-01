@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+  <display-name></display-name>
+  
+<!-- servlet的配置信息  系统自动完成-->
+  <!-- AdminLogin登录操作 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminLogin</servlet-name>
+    <servlet-class>com.gqz.news.servlet.AdminLogin</servlet-class>
+  </servlet>
+  <!-- AdminQuit 退出操作 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminQuit</servlet-name>
+    <servlet-class>com.gqz.news.servlet.AdminQuit</servlet-class>
+  </servlet>
+   <!-- 修改密码 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>ChangePassword</servlet-name>
+    <servlet-class>com.gqz.news.servlet.ChangePassword</servlet-class>
+  </servlet>
+  
+	
+  <servlet-mapping>
+    <servlet-name>AdminLogin</servlet-name>
+    <url-pattern>/manager/AdminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminQuit</servlet-name>
+    <url-pattern>/manager/AdminQuit</url-pattern>
+  </servlet-mapping>
+ 
+  <servlet-mapping>
+    <servlet-name>ChangePassword</servlet-name>
+    <url-pattern>/manager/ChangePassword</url-pattern>
+  </servlet-mapping>	
+  
+  <!-- fckEditor上传文件 -->
+  <servlet>
+  	<servlet-name>Connector</servlet-name> 
+  	<servlet-class>net.fckeditor.connector.ConnectorServlet</servlet-class> 
+  	<load-on-startup>1</load-on-startup> 
+  </servlet>
+  
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PreAddNews</servlet-name>
+    <servlet-class>com.gqz.news.servlet.PreAddNews</servlet-class>
+  </servlet>
+  <!-- 新增管理员 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddAdmin</servlet-name>
+    <servlet-class>com.gqz.news.servlet.AddAdmin</servlet-class>
+  </servlet>
+  
+  <!-- 新闻列表管理 -->
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>NewsList</servlet-name>
+    <servlet-class>com.gqz.news.servlet.NewsList</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>addNewsclass</servlet-name>
+    <servlet-class>com.gqz.news.servlet.addNewsclass</servlet-class>
+  </servlet>
+
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Front</servlet-name>
+    <servlet-class>com.gqz.news.servlet.Front</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Front</servlet-name>
+    <url-pattern>/Front</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+  	<servlet-name>Connector</servlet-name> 
+  	<url-pattern>/fckeditor/editor/filemanager/connectors/*</url-pattern> 
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>PreAddNews</servlet-name>
+    <url-pattern>/manager/PreAddNews</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>AddAdmin</servlet-name>
+    <url-pattern>/manager/AddAdmin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>NewsList</servlet-name>
+    <url-pattern>/manager/NewsList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>addNewsclass</servlet-name>
+    <url-pattern>/manager/addNewsclass</url-pattern>
+  </servlet-mapping>
+  
+  <!-- Vcode验证码的生成 -->
+  <servlet>
+  	<servlet-name>VerifyCodeServlet</servlet-name>
+  	<servlet-class>com.gqz.news.servlet.VerifyCodeServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Back</servlet-name>
+    <servlet-class>com.gqz.news.servlet.Back</servlet-class>
+  </servlet>
+
+  
+  <servlet-mapping>
+  	<servlet-name>VerifyCodeServlet</servlet-name>
+  	<url-pattern>/VerifyCode</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Back</servlet-name>
+    <url-pattern>/manager/Back</url-pattern>
+  </servlet-mapping>
+  
+  <!-- filter的配置信息  自己来完成配置 -->
+  <filter>
+  	<filter-name>SecurityFilter</filter-name>
+  	<filter-class>com.gqz.news.servlet.SecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>SecurityFilter</filter-name>
+   <url-pattern>/manager/*</url-pattern> <!-- 过滤器过滤的资源，拦截资源 -->
+  </filter-mapping>
+  
+  
+  <!-- 设置编码的过滤器 -->
+  <filter>
+  	<filter-name>CharacterEncodingFilter</filter-name>
+  	<filter-class>com.gqz.news.servlet.CharacterEncodingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+   <filter-name>CharacterEncodingFilter</filter-name>
+   <url-pattern>/*</url-pattern> <!-- 过滤器过滤的资源，拦截资源 -->
+  </filter-mapping>
+  
+  <!-- 设置错误页面 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+   <error-page>
+  	<error-code>400</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+   <error-page>
+  	<error-code>505</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+  
+  <welcome-file-list>  
+    <welcome-file>first.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
