@@ -22,22 +22,22 @@
 									<a href="Front?op=beforeReg" target="_blank">Register</a>
 								</li>
 								<li>
-									<a href="https://ganquanzhong.top/Web/time.html" target="_blank">Time</a>
+									<a href="/index/time.html" target="_blank">Time</a>
 								</li>
 								<li>
-									<a href="https:ganquanzhong.top/Web" target="_blank">More</a>
+									<a href="/index" target="_blank">More</a>
 								</li>
 								<li>
 									<a href="https:ganquanzhong.top" target="_blank">Share</a>
 								</li>	
 								<li>
-									<a href="https://ganquanzhong.top/translate/" target="_blank">Translate</a>
+									<a href="/translate/" target="_blank">Translate</a>
 								</li>							
 								<li>
 									<a href="https://github.com/gqzGitHub/" target="_blank">gqzGitHub</a>
 								</li>
 								<li>
-									<a href="https://www.ganquanzhong.top/mynews/manager/Mlogin.jsp" target="_blank">News Manager</a>
+									<a href="/news/manager/Mlogin.jsp" target="_blank">News Manager</a>
 								</li>							
 							</ul>
 						</div>

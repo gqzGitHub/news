@@ -113,9 +113,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<div class="clear"></div>
 		<!--底部版权信息 start-->
-		<div class="footer">
+		<div class="footer" >
 			<div>
-				<p class="padding-bottom">
+				<p >
 					Copyright &copy; 2017-2020
 					<a href="http://www.ganquanzhong.top/mynews/" target="_blank">
 						ForFuture News

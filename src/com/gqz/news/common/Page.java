@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Page {
 	private int pageNumber;//当前需要显示的页码
-	private int pageSize=8;//每页显示的记录数
+	private int pageSize=10;//每页显示的记录数
 	private int totalPageNumber;//总页数
 	private int totalRecordNumber;//总记录数
 	private int startIndex;//每页开始的记录的索引limit startIndex ,pageSize

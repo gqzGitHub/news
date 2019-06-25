@@ -103,6 +103,7 @@
 					<c:forEach items="${classList }" var="c">
 						<li><a href="Front?op=listByClass&classId=${c.classId }">${c.content }</a></li>
 					</c:forEach>
+					<li><a href="Front?op=getNetnewsList" >全网新闻</a></li>
 				</ul>
 			</nav>
 			<!-- End Main-Navigation -->
@@ -110,13 +111,13 @@
 
 
 			<!---post帖子显示  start---->
-			<div id="highlight-posts" class="clearfix" >
+			<!-- <div id="highlight-posts" class="clearfix" >
 				<ul>
 					<li class="masked masked-big" style="width:100%;">
-						<!-- One -->
+						One
 						<div class="flexslider highlight-one loading">
 							<ul class="slides">
-								<!-- Images -->
+								Images
 								<li>
 									<figure
 										style="background-image:url(https://ganquanzhong.top/img/bg-1.jpg);"></figure>
@@ -134,7 +135,7 @@
 						<a href="#" title="ForFuture news picture">
 							<div class="masked-hover"></div>
 						</a> 
-						<!-- Masked Hover -->
+						Masked Hover
 						<div class="text">
 							<h2>Alvear Art Black and White Theme</h2>
 							<span class="meta">By mdkiwol on Jan. 14, 2013</span>
@@ -142,7 +143,7 @@
 						</div>
 					</li>					
 				</ul>
-			</div>
+			</div> -->
 			<!-- End Highlight Posts -->
 			<!---post帖子显示  end	---->
 

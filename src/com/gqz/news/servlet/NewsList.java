@@ -446,6 +446,8 @@ public class NewsList extends HttpServlet {
 	///文件上传使用的方法 processUploadFiled
 	private void processUploadFiled(FileItem item, News news) {
 		// TODO Auto-generated method stub
+		//设置文件上传路径
+//		String path="...E://DevFile//news//";
 		String storeDirectory = getServletContext().getRealPath("/images");
 		File rootDirectory = new File(storeDirectory);
 		if(!rootDirectory.exists())
@@ -470,6 +472,7 @@ public class NewsList extends HttpServlet {
 		}
 
 	}
+	
 	///文件上传使用的方法 processFormFiled
 	private void processFormFiled(FileItem item, News news) {
 		// TODO Auto-generated method stub

@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <div class="result-content">
 		                <div class="short-wrap">
 		                	<a href="https://ganquanzhong.top/ShareFiles/" target="_Blank"><i class="icon-font" style="padding-left:25px ;">&#xe005;</i>ShareFiles</a>											
-		                	<a href="https://ganquanzhong.top/Web/" target="_Blank"><i class="icon-font" style="padding-left:25px ;">&#xe005;</i>More</a>	
+		                	<a href="https://ganquanzhong.top/index/" target="_Blank"><i class="icon-font" style="padding-left:25px ;">&#xe005;</i>More</a>	
 		                </div>
 		            </div>
 		        </div>
@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<div class="clear"></div>
 		<!--底部版权信息 start-->
-		<div class="footer">
+		<div class="footer" style="bottom:auto;">
 			<div>
 				<p class="padding-bottom">
 					Copyright &copy; 2017-2020

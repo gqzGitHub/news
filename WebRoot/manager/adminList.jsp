@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<div class="clear"></div>
 		<!--底部版权信息 start-->
-		<div class="footer footer_location">
+		<div class="footer footer_location" style="bottom:auto;">
 			<div>
 				<p class="padding-bottom">
 					Copyright &copy; 2017-2020

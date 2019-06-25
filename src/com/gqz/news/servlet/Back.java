@@ -585,7 +585,7 @@ public class Back extends BaseServlet {
 			PrintWriter out = response.getWriter();
 			out.print("<script>alert('暂无管理员用户！!');window.location.href='index.jsp'</script>");
 		}
-		return "/adminList.jsp";
+		return "adminList.jsp";
 	}
 	
 	/**

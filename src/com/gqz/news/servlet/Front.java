@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
@@ -21,19 +24,19 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 import com.gqz.news.DAO.ForumDAO;
+import com.gqz.news.DAO.NetnewsDAO;
 import com.gqz.news.DAO.NewsDAO;
 import com.gqz.news.DAO.NewsUserDAO;
 import com.gqz.news.DAO.NewsclassDAO;
 import com.gqz.news.DAO.NoteDAO;
 import com.gqz.news.DAO.ReplyDAO;
 import com.gqz.news.common.BaseServlet;
+import com.gqz.news.common.NetNewsJson;
 import com.gqz.news.common.Page;
 import com.gqz.news.common.WebUtil;
 import com.gqz.news.factory.ForumDAOFactory;
+import com.gqz.news.factory.NetnewsDAOFactory;
 import com.gqz.news.factory.NewsDAOFactory;
 import com.gqz.news.factory.NewsUserDAOFactory;
 import com.gqz.news.factory.NewsclassDAOFactory;
@@ -41,10 +44,12 @@ import com.gqz.news.factory.NoteDAOFactory;
 import com.gqz.news.factory.ReplyDAOFactory;
 import com.gqz.news.model.Forum;
 import com.gqz.news.model.News;
+import com.gqz.news.model.NewsPo;
 import com.gqz.news.model.NewsUser;
 import com.gqz.news.model.Newsclass;
 import com.gqz.news.model.Note;
 import com.gqz.news.model.Reply;
+import com.gqz.news.util.DateUtil;
 import com.gqz.news.util.MD5Util;
 
 /**
@@ -303,8 +308,7 @@ public class Front extends BaseServlet {
 	public static String query(HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		// 1.显示新闻分类信息
-		NewsclassDAO newsclassDAO = NewsclassDAOFactory
-				.getNewsclassDAOInstance();
+		NewsclassDAO newsclassDAO = NewsclassDAOFactory	.getNewsclassDAOInstance();
 		List<Newsclass> classList = newsclassDAO.getList();
 		request.setAttribute("classList", classList);
 
@@ -927,5 +931,38 @@ public class Front extends BaseServlet {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public String getNetnewsList(HttpServletRequest request,	HttpServletResponse response) throws IOException, ServletException {
+		 // 1.显示新闻分类信息
+		NewsclassDAO newsclassDAO = NewsclassDAOFactory	.getNewsclassDAOInstance();
+		List<Newsclass> classList = newsclassDAO.getList();
+		request.setAttribute("classList", classList);
+		
+		// 2.分页显示 所有已审核的新闻
+		String num = request.getParameter("num");// 获取需要显示的页码
+		// 第一次查询，没有设置查询的页码，pageNum的就是1
+		int pageNum = 1;
+		// 如果不是一次查询，用户点击上一页和下一页 超链接时，就有num页码
+		if (num != null && !num.equals("")) {
+			pageNum = Integer.parseInt(num);
+		}
+		// 2.1.查询网络新闻--即news表中的信息
+		// 实例化一个netnewsDAO对象 ，使用工厂类的静态方法实现
+		NetnewsDAO netnewsDAO = NetnewsDAOFactory.getNetnewsDAOInstance();
+		
+		int totalRecordNum = netnewsDAO.getTotalRecordNum();// 获取// 已审核的（Verified）总的记录数
+		if (totalRecordNum != 0) {
+			Page page = new Page(pageNum, totalRecordNum);// 构建分页对象
+			// 访问NewsDAO getList方法，将 已审核的（Verified） news表中的新闻分类信息存入到request中去
+			List<NewsPo> newList = netnewsDAO.getVerifiedListByPage(page.getStartIndex(), page.getPageSize());// 分页查询
+			page.setRecords(newList);// 保存 --设置每页显示的信息
+			page.setUrl("/Front?op=getNetnewsList"); // 点击超链接跳转的url
+			request.setAttribute("page", page);
+		} else {
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('该新闻分类尚未发布新闻！！');;window.location.href='Front?op=main'</script>");
+		}
+		return "allnetnewsList.jsp";
 
+	}
 }

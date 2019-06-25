@@ -1,0 +1,46 @@
+json规则版本：2.0
+作者：旋葎
+联系QQ：535770212
+联系邮箱：535770212@qq.com
+
+注：
+	1.规则与jquery中的方法基本一样 ,规则按顺序执行(上一行规则执行完成  下一行规则继承上一规则执行后的剩余标签对象)
+	2.如功能与您所需要的不符，您可要自定义改源码
+	3.如无法理解说明规则 ，可将项目跑起来  对照新浪新闻与百度新闻的html代码与规则进行Debug调试
+说明：
+1.支持Class属性指定抓取第几条  如：class=test:0    :0表示第一个class属性=test的标签   :1表示第二个    依次类推    (key处不写：号表示所有,其它地方不写代表第一个标签)  
+2.获取指定标签元素（html、a、div等） ：function=select:html    select代表获取标签     :后拼接标签名
+3.获得标签元素的属性内容：function=attr:href     attr代表获取属性    :后拼接要获取的属性名称
+4.其它方法：function=text   (text/ownText/ownHtml) 
+5.Class规则支持|符号     此符号代表 前一class规则未找到对应标签时，执行|符号后的class规则     但带有|后不支持：符号（即不支持逻辑判断,可自行优化）
+	如： "id":"class=test1|test2"
+	
+	
+例子中weibo2.json代表微博的抓取规则
+{
+    "HtmlContent":"function=select:html",   --HtmlContent名称不可改  用于确定要抓取的数据在整个页面的大体范围（作用：缩小检索范围，提高效率，越精确越好）
+    "itm":{									--itm名称不可改  用于确定你要抓取的数据是否为多条  
+        "key":"class=content", 				--key名称不可改   用于确定你要抓取的多条list数据  有什么共同标识    此例中：页面会出现多个class属性为content的标签 
+        "content":{							--content名称不可改   用于单个list数据进行处理
+            "title":{						--此处title名称可改   数据返回时list中的map键名就是这个
+                "id":"class=feed_content:0", --id不可改   用于确定你要取的这个数据的准确位置（标签）
+                "fun_1":"class=W_fb:0",		 --fun_1代表找到准确的标签后  你要取这个标签的什么内容
+                "fun_2":"function=text"		 --fun_2代表找到准确的标签后  你要取这个标签的什么内容   先执行fun_1在执行2 如果继续执行就写fun_3...  当这个json后没有fun_时，就会将你这个fun_取的的数据插入map
+            },
+            "url":{							 --以下均同上   这些json不限制数量 
+                "id":"class=feed_content:0",
+                "fun_1":"class=W_fb:0",
+                "fun_2":"function=select:a",
+                "fun_3":"function=attr:href"
+            },
+            "intro":{
+                "id":"class=comment_txt:0",
+                "fun_1":"function=text"
+            },
+            "datetime":{
+                "id":"class=W_textb:1",
+                "fun_1":"function=text"
+            }
+        }
+    }
+}
